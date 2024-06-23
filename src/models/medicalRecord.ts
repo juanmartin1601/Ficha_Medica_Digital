@@ -1,5 +1,6 @@
 import { Model, DataTypes } from "sequelize";
 import sequelize from "../config/database";
+//import Pet from "./pet";
 
 class MedicalRecord extends Model {
   public id!: number;
@@ -38,15 +39,18 @@ MedicalRecord.init(
       type: DataTypes.UUID,
       allowNull: false,
       references: {
-        model: "Pets",
+        model: "pets",
         key: "id",
       },
     },
   },
   {
     sequelize,
-    modelName: "MedicalRecord",
+    tableName: "medicalRecord",
   }
 );
+
+//MedicalRecord.belongsTo(Pet, { foreignKey: "petId" });
+//Pet.hasMany(MedicalRecord, { foreignKey: "petId" });
 
 export default MedicalRecord;

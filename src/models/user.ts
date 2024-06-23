@@ -1,5 +1,6 @@
 import { Model, DataTypes } from "sequelize";
 import sequelize from "../config/database";
+import Pet from "./pet";
 
 class User extends Model {
   public id!: number;
@@ -46,7 +47,7 @@ User.init(
   },
   {
     sequelize,
-    modelName: "User",
+    tableName: "users",
   }
 );
 
