@@ -79,4 +79,18 @@ export class MedicalRecordController {
       res.status(500).json({ error: "Error fetching medical records" });
     }
   }
+
+  public static async getMedicalRecordsByUserDni(
+    req: Request,
+    res: Response
+  ): Promise<void> {
+    try {
+      const { dni } = req.params;
+      const medicalRecords =
+        await MedicalRecordService.getMedicalRecordsByUserDni(dni);
+      res.status(200).json(medicalRecords);
+    } catch (error) {
+      res.status(500).json({ error: "Error fetching medical records" });
+    }
+  }
 }

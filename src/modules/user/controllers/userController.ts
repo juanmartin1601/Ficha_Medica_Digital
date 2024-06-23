@@ -31,36 +31,4 @@ export class UserController {
       res.status(500).json({ error: "Error fetching user" });
     }
   }
-
-  public static async updateUser(req: Request, res: Response): Promise<void> {
-    try {
-      const { id } = req.params;
-      const updateData = req.body;
-      const updatedUser: User | null = await UserService.updateUser(
-        id,
-        updateData
-      );
-      if (updatedUser) {
-        res.status(200).json(updatedUser);
-      } else {
-        res.status(404).json({ error: "User not found" });
-      }
-    } catch (error) {
-      res.status(500).json({ error: "Error updating user" });
-    }
-  }
-
-  public static async deleteUser(req: Request, res: Response): Promise<void> {
-    try {
-      const { id } = req.params;
-      const deleted: number = await UserService.deleteUser(id);
-      if (deleted) {
-        res.status(204).send();
-      } else {
-        res.status(404).json({ error: "User not found" });
-      }
-    } catch (error) {
-      res.status(500).json({ error: "Error deleting user" });
-    }
-  }
 }

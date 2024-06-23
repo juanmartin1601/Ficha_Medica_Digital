@@ -10,8 +10,4 @@ export class PetService {
   }): Promise<Pet> {
     return await Pet.create(petData);
   }
-
-  public static async getPetsByUserId(userId: string): Promise<Pet[]> {
-    return await Pet.findAll({ where: { userId } });
-  }
 }

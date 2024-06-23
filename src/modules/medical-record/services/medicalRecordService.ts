@@ -1,4 +1,6 @@
 import MedicalRecord from "../../../models/medicalRecord";
+import Pet from "../../../models/pet";
+import User from "../../../models/user";
 
 export class MedicalRecordService {
   public static async createMedicalRecord(recordData: {
@@ -34,5 +36,15 @@ export class MedicalRecordService {
     petId: string
   ): Promise<MedicalRecord[]> {
     return await MedicalRecord.findAll({ where: { petId } });
+  }
+
+  public static async getMedicalRecordsByUserDni(dni: string) {
+    const user = await User.findOne({ where: { dni } });
+    if (!user) {
+      return [];
+    }
+    const pets = await Pet.findAll({ where: { userId: user.id } });
+    const petIds = pets.map((pet) => pet.id);
+    return await MedicalRecord.findAll({ where: { petId: petIds } });
   }
 }
