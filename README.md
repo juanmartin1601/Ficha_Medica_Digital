@@ -6,7 +6,7 @@
 
 - npm install
 
-### Crear base de datos
+### Crear base de datos postgres
 
 CREATE DATABASE nombre_db
 
