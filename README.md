@@ -63,8 +63,21 @@ POST /api/users
   "email": "Correo electrónico",
   "password": "Contraseña"
   }
+### Mascota
+POST /api/pets
 
-  ### Ficha médica
+- Descripción: Agrega una mascota a un usuario
+- Cuerpo de la solicitud:
+{
+  "name": "MiMascota",
+  "species": "Dog",
+  "birthDate": "2021-03-22",
+  "gender": "male",
+  "userId": "ID_del_usuario" 
+}
+
+
+### Ficha médica
 
 - POST /api/medical-records
 
