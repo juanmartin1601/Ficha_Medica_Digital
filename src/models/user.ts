@@ -5,6 +5,7 @@ import Pet from "./pet";
 class User extends Model {
   public id!: number;
   public name!: string;
+  public password!: string;
   public dni!: string;
   public address!: string;
   public email!: string;
@@ -26,6 +27,11 @@ User.init(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: false,
     },
     dni: {
       type: DataTypes.STRING,

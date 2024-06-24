@@ -74,6 +74,10 @@ export class MedicalRecordController {
       const { petId } = req.params;
       const medicalRecords =
         await MedicalRecordService.getMedicalRecordsByPetId(petId);
+      if (!medicalRecords)
+        res
+          .status(404)
+          .json({ error: "No medical records found for this pet" });
       res.status(200).json(medicalRecords);
     } catch (error) {
       res.status(500).json({ error: "Error fetching medical records" });
@@ -89,6 +93,10 @@ export class MedicalRecordController {
       const medicalRecords =
         await MedicalRecordService.getMedicalRecordsByUserDni(dni);
       res.status(200).json(medicalRecords);
+      if (!medicalRecords)
+        res
+          .status(404)
+          .json({ error: "No medical records found for this user" });
     } catch (error) {
       res.status(500).json({ error: "Error fetching medical records" });
     }

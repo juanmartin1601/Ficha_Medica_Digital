@@ -46,7 +46,7 @@ MedicalRecord.init(
   },
   {
     sequelize,
-    tableName: "medicalRecord",
+    tableName: "medicalRecords",
   }
 );
 

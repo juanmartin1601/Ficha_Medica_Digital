@@ -39,13 +39,11 @@ export class MedicalRecordService {
   }
 
   public static async getMedicalRecordsByUserDni(dni: string) {
-    const user = await User.findOne({ where: { dni } });
-    console.log(user, "soy el usuario ----");
+    const user = await User.findOne({ where: { dni }, raw: true });
     if (!user) {
-      return [];
+      throw new Error("user not found");
     }
     const pets = await Pet.findAll({ where: { userId: user.id } });
-    console.log(pets, "somos las mascotas -------");
     const petIds = pets.map((pet) => pet.id);
     return await MedicalRecord.findAll({ where: { petId: petIds } });
   }
