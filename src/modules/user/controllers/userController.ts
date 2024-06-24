@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
-import User from "../../../models/user";
 import { UserService } from "../services/userService";
 
 export class UserController {
   public static async createUser(req: Request, res: Response): Promise<void> {
     try {
-      const { name, dni, address, email } = req.body;
-      const newUser: User = await UserService.createUser({
+      const { name, password, dni, address, email } = req.body;
+      const newUser = await UserService.createUser({
         name,
+        password,
         dni,
         address,
         email,
